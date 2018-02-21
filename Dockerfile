@@ -1,10 +1,10 @@
-FROM infinitenature/indicia-warehouse:1.32.0
+FROM infinitenature/indicia-warehouse
 
 COPY dump.sql dump.sql
 
 USER postgres
 RUN echo $HOME
-RUN /etc/init.d/postgresql start && sleep 5 &&\
+RUN /etc/init.d/postgresql start && sleep 20 &&\
     PGPASSWORD="indicia_user_pass" psql --host=localhost --dbname=indicia --username=indicia_user < dump.sql
 
 USER root
