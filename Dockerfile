@@ -1,4 +1,4 @@
-FROM infinitenature/indicia-warehouse
+FROM infinitenature/indicia-warehouse:v-1.32.0-003
 
 COPY dump.sql dump.sql
 
