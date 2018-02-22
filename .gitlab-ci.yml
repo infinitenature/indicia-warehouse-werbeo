@@ -1,0 +1,13 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+build:
+  stage: build
+  script:
+    - docker build -t infinitenature/indicia-warehouse-werbeo:latest .
+    - docker tag infinitenature/indicia-warehouse-werbeo:latest infinitenature/indicia-warehouse-werbeo:1.32.0-$CI_PIPELINE_ID
+    - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
+    - docker push infinitenature/indicia-warehouse-werbeo:latest
+    - docker push infinitenature/indicia-warehouse-werbeo:1.32.0-$CI_PIPELINE_ID
